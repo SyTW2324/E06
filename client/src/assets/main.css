@@ -1,16 +1,12 @@
 @import './base.css';
 
 body {
-  background-color: blueviolet;
-  background-image: url("../../public/images/background.jpg");
+  background-image: url("../../images/background.jpg");
   background-size: cover;
   background-position: center;
-  align-items: center;
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
 }
