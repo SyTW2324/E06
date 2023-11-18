@@ -1,8 +1,11 @@
-import express from "express";
+import dotenv from "dotenv";
+import "./db/mongoose.js";
+import { app } from "./app.js";
 
-const app = express();
+dotenv.config();
+const IP = process.env.IP || "localhost";
+const PORT = process.env.PORT || 5200;
 
-// start the Express server
-app.listen(5200, () => {
-  console.log('Server running at http://localhost:5200...');
+app.listen(+PORT, IP, () => {
+  console.log(`Servidor escuchando en el puerto ${PORT} de la dirección ${IP}`);
 });
