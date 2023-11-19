@@ -8,10 +8,28 @@
 
     <div class="main-screen">
       <div class="main-screen-text">
-        <h1>Registro</h1>
-        <h2>página de pascua</h2>
-        <div class="spacer"></div>
-        <button type="button" class="btn btn-primary">Regístrate</button>
+        <div class="img-login">
+          <img src="../assets/user_icon.png" alt="" width="60px" height="60px">
+        </div><br>
+
+        <div class="mb-2">
+          <label for="exampleFormControlInput1" class="form-label">Nombre Completo</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre Apellido Apellido">
+        </div>
+        <div class="mb-2">
+          <label for="exampleFormControlInput1" class="form-label">Nombre de usuario</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Usuario">
+        </div>
+        <div class="mb-2">
+          <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="nombre@email.com">
+        </div>
+
+        <a type="button" class="btn btn-primary" href="#">Registrarse</a><br>
       </div>
     </div>
 
@@ -30,14 +48,13 @@
   z-index: 1000;
 }
 .main-screen {
-  width: 34%;
+  width: 40%;
   background-color: #455a64e0;
   border-radius: 2rem;
   overflow: hidden;
-  padding-top: 2%;
-  padding-bottom: 2%;
-  top: 30%;
-  left: 33%;
+  padding: 2%;
+  top: 25%;
+  left: 30%;
   position: absolute;
 }
 .main-screen-text {
@@ -51,15 +68,25 @@
   text-align: center;
 }
 
+.img-login{
+  text-align: center;
+  margin-bottom: 0%;
+}
+
+.form-label{
+  color: white;
+  margin-bottom: 0%;
+}
+
 .main-screen-text .btn {
   width: 40%;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   background-color: #00A0D1;
   border-color: #00A0D1;
   border-radius: 3rem;
   overflow: hidden;
   padding: 2%;
-  left: 30%;
+  left: 60%;
   position: relative;
 }
 
@@ -69,8 +96,25 @@
   text-align: center;
 }
 
-.spacer {
-  height: 80px;
+.forgot-link {
+  text-align: right;
+  padding-bottom: 4%;
+}
+
+.forgot-link .forgot-link-text {
+  color: #00A0D1; 
+  text-decoration: none; 
+  cursor: pointer; 
+}
+
+.btn-register{
+  text-align: center;
+}
+
+.btn-register .btn-register-text{
+  font-size: 1.25rem;
+  color: white;
+  text-decoration: none;
 }
 
 .footer {
@@ -93,34 +137,16 @@
     position: absolute;
   }
 
-  .main-screen-text {
-    color: white;
-    width: 100%;
-  }
-
-  .main-screen-text h1 {
-    font-size: 4rem;
-    font-weight: 500;
-    text-align: center;
-  }
-
   .main-screen-text .btn {
-    width: 50%;
+    width: 70%;
     font-size: 1.5rem;
     background-color: #00A0D1;
     border-color: #00A0D1;
     border-radius: 3rem;
     overflow: hidden;
     padding: 2%;
-    margin-bottom: 5%;
-    left: 25%;
+    left: 15%;
     position: relative;
-  }
-
-  .main-screen-text h2 {
-    font-size: 300%;
-    font-weight: 500;
-    text-align: center;
   }
 }
 </style>

@@ -36,7 +36,7 @@
   overflow: hidden;
   padding-top: 2%;
   padding-bottom: 2%;
-  top: 30%;
+  top: 25%;
   left: 33%;
   position: absolute;
 }
