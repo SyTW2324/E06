@@ -7,7 +7,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img src="../../images/iso.png" alt="" width="40" height="32">FISHING NET
+          <img src="../assets/iso.png" alt="">FISHING NET
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,9 +29,10 @@
             </li>
           </ul>
           <a class="nav-item" href="#">
-            <img src="../../images/user_icon.png" alt="" width="40px" height="40px">
+            <img src="../assets/user_icon.png" alt="" width="40px" height="40px">
           </a>
         </div>
+       
       </div>
     </nav>
   </div>
@@ -53,10 +54,16 @@
   width: 8%;
   margin-right: 2%;
 }
+
 .navbar-brand { 
   color: white; 
-  font-size: 2rem;
   align-items: center;
+  font-size: 30px;
+}
+.navbar-brand:hover { 
+  color: white; 
+  align-items: center;
+  font-size: 30px;
 }
 
 .navbar-nav .nav-link.active { /* Cuando esta activo*/
@@ -66,7 +73,16 @@
 }
 
 .navbar-nav .nav-link {
-  color: white; 
+  color: white;
   font-size: 20px; 
+}
+
+@media (max-width: 576px) {
+  .navbar-brand { 
+    color: white; 
+    width: 60%;
+    font-size: 20px;
+    align-items: center;
+  }
 }
 </style>

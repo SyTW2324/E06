@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import Navbar from './components/Navbar.vue'
+  import Footer from './components/Footer.vue'
 </script>
 
 <template>
@@ -9,10 +10,12 @@
       <div class="main-screen-text">
         <h1>TU</h1>
         <h2>página de pesca</h2>
-        <br/><br/><br/><br/><br/><br/>
+        <div class="spacer"></div>
         <button type="button" class="btn btn-primary">Regístrate</button>
       </div>
     </div>
+
+    <div class="footer"><Footer /></div>
 </template>
 
 <style scoped>
@@ -66,21 +69,58 @@
   text-align: center;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+.spacer {
+  height: 80px;
+}
+
+.footer {
+  background-color: #00A0D1;
+  bottom: 0;
+  width: 100%; 
+  left: 0;
+  position: fixed;
+}
+
+@media (max-width: 576px) {
+  .main-screen {
+    width: 70%;
+    background-color: #455a64e0;
+    border-radius: 2rem;
+    overflow: hidden;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    left: 15%;
+    position: absolute;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  .main-screen-text {
+    color: white;
+    width: 100%;
   }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  .main-screen-text h1 {
+    font-size: 4rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .main-screen-text .btn {
+    width: 50%;
+    font-size: 1.5rem;
+    background-color: #00A0D1;
+    border-color: #00A0D1;
+    border-radius: 3rem;
+    overflow: hidden;
+    padding: 2%;
+    margin-bottom: 5%;
+    left: 25%;
+    position: relative;
+  }
+
+  .main-screen-text h2 {
+    font-size: 300%;
+    font-weight: 500;
+    text-align: center;
   }
 }
 </style>
