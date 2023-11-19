@@ -6,7 +6,7 @@
   <div class ="navBar">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="#/">
           <img src="../assets/iso.png" alt="">FISHING NET
         </a>
 
@@ -28,7 +28,7 @@
               <a class="nav-link" aria-current="page" href="#">Marea</a>
             </li>
           </ul>
-          <a class="nav-item" href="#">
+          <a class="nav-item" href="#/login">
             <img src="../assets/user_icon.png" alt="" width="40px" height="40px">
           </a>
         </div>
