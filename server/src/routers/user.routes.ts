@@ -81,7 +81,7 @@ userRouter.delete("/users/:username", async (req, res) => {
   try {
     // Deletes the user
     const deletedUser = await User.findOneAndDelete({
-      id: req.params.username.toString(),
+      username: req.params.username.toString(),
     });
 
     if (deletedUser) {
