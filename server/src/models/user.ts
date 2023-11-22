@@ -1,11 +1,11 @@
-import { Document, Schema, model } from "mongoose";
+import mongoose, { Document, Schema, model } from "mongoose";
 
 export interface UserDocumentInterface extends Document {
   email: string;
   username: string;
   name: string;
   password: string;
-  image: string;
+  image: mongoose.mongo.GridFSBucket;
 }
 
 const UserSchema = new Schema<UserDocumentInterface>({

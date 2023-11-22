@@ -1,16 +1,21 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <!-- Navbar.vue -->
 <template>
-  <div class ="navBar">
+  <div class="navBar">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#/">
-          <img src="../assets/iso.png" alt="">FISHING NET
-        </a>
+        <a class="navbar-brand" href="/"> <img src="../assets/iso.png" alt="" />FISHING NET </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -28,58 +33,60 @@
               <a class="nav-link" aria-current="page" href="#">Marea</a>
             </li>
           </ul>
-          <a class="nav-item" href="#/login">
-            <img src="../assets/user_icon.png" alt="" width="40px" height="40px">
+          <a class="nav-item" href="/login">
+            <img src="../assets/user_icon.png" alt="" width="40px" height="40px" />
           </a>
         </div>
-       
       </div>
     </nav>
   </div>
 </template>
 
-
 <style>
-.navBar{
+.navBar {
   width: 100%;
-  background-color: #00A0D1;
+  background-color: #00a0d1;
   position: absolute;
   top: 0;
   padding-left: 1%;
   padding-right: 1%;
 }
 
-.navbar-brand img { 
+.navbar-brand img {
   height: 8%;
   width: 8%;
   margin-right: 2%;
 }
 
-.navbar-brand { 
-  color: white; 
-  align-items: center;
-  font-size: 30px;
-}
-.navbar-brand:hover { 
-  color: white; 
+.navbar-brand {
+  color: white;
   align-items: center;
   font-size: 30px;
 }
 
-.navbar-nav .nav-link.active { /* Cuando esta activo*/
-  color: white; 
-  font-size: 20px; 
+.navbar-brand:hover,
+.navbar-brand:visited {
+  color: white;
+  align-items: center;
+  font-weight: initial;
+}
+
+.navbar-nav,
+.nav-link:active {
+  /* Cuando esta activo*/
+  color: white;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .navbar-nav .nav-link {
   color: white;
-  font-size: 20px; 
+  font-size: 20px;
 }
 
 @media (max-width: 576px) {
-  .navbar-brand { 
-    color: white; 
+  .navbar-brand {
+    color: white;
     width: 60%;
     font-size: 20px;
     align-items: center;

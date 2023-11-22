@@ -1,52 +1,112 @@
 <script setup lang="ts">
-  import Navbar from '../components/Navbar.vue'
-  import Footer from '../components/Footer.vue'
+import axios from 'axios'
+</script>
+
+<script lang="ts">
+export default {
+  data() {
+    return {
+      user: {
+        name: '',
+        email: '',
+        username: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    createUser() {
+      let apiURL = 'http://10.6.128.177:80/users'
+
+      console.log(this.user.name)
+      axios
+        .post(apiURL, this.user)
+        .then((response) => {
+          if (response.status == 202) {
+            alert('Usuario NO creado. ' + response.data)
+          } else {
+            alert('Usuario creado con éxito.')
+            this.$router.push('/')
+            this.user = {
+              name: '',
+              email: '',
+              username: '',
+              password: ''
+            }
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }
+}
 </script>
 
 <template>
-    <div class="navbar"><Navbar /></div>
+  <div class="main-screen">
+    <div class="main-screen-text">
+      <div class="img-login">
+        <img class="user-icon" src="../assets/user_icon.png" alt="" />
+      </div>
+      <br />
 
-    <div class="main-screen">
-      <div class="main-screen-text">
-        <div class="img-login">
-          <img src="../assets/user_icon.png" alt="" width="60px" height="60px">
-        </div><br>
-
+      <form @submit.prevent="createUser">
         <div class="mb-2">
           <label for="exampleFormControlInput1" class="form-label">Nombre Completo</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre Apellido Apellido">
+          <input
+            type="text"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Nombre"
+            v-model="user.name"
+            required
+          />
         </div>
         <div class="mb-2">
           <label for="exampleFormControlInput1" class="form-label">Nombre de usuario</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Usuario">
+          <input
+            type="text"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Nombre usuario"
+            v-model="user.username"
+            required
+          />
         </div>
         <div class="mb-2">
           <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
+          <input
+            type="password"
+            class="form-control"
+            id="inputPassword"
+            placeholder="Contraseña"
+            v-model="user.password"
+            pattern="^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$"
+            title="La contraseña debe tener entre 6 y 16 caracteres y contener un número"
+            required
+          />
+          <!--La contraseña debe tener entre 6 y 16 caracteres y contener un número-->
         </div>
-        <div class="mb-3">
+        <div class="mb-5">
           <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="nombre@email.com">
+          <input
+            type="email"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="nombre@email.com"
+            v-model="user.email"
+            required
+          />
         </div>
 
-        <a type="button" class="btn btn-primary" href="#">Registrarse</a><br>
-      </div>
+        <button type="submit" class="btn btn-primary"><a>Registrarse</a></button><br />
+      </form>
     </div>
-
-    <div class="footer"><Footer /></div>
+  </div>
 </template>
 
 <style scoped>
-#app {
-  left: 50%;
-}
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%; 
-  z-index: 1000;
-}
 .main-screen {
   width: 40%;
   background-color: #455a64e0;
@@ -55,6 +115,7 @@
   padding: 2%;
   top: 25%;
   left: 30%;
+  margin-bottom: 200px;
   position: absolute;
 }
 .main-screen-text {
@@ -68,12 +129,17 @@
   text-align: center;
 }
 
-.img-login{
+.img-login {
   text-align: center;
   margin-bottom: 0%;
 }
 
-.form-label{
+.user-icon {
+  width: 15%;
+  height: 15%;
+}
+
+.form-label {
   color: white;
   margin-bottom: 0%;
 }
@@ -81,8 +147,8 @@
 .main-screen-text .btn {
   width: 40%;
   font-size: 1.4rem;
-  background-color: #00A0D1;
-  border-color: #00A0D1;
+  background-color: #00a0d1;
+  border-color: #00a0d1;
   border-radius: 3rem;
   overflow: hidden;
   padding: 2%;
@@ -96,33 +162,14 @@
   text-align: center;
 }
 
-.forgot-link {
-  text-align: right;
-  padding-bottom: 4%;
-}
-
-.forgot-link .forgot-link-text {
-  color: #00A0D1; 
-  text-decoration: none; 
-  cursor: pointer; 
-}
-
-.btn-register{
+.btn-register {
   text-align: center;
 }
 
-.btn-register .btn-register-text{
+.btn-register .btn-register-text {
   font-size: 1.25rem;
   color: white;
   text-decoration: none;
-}
-
-.footer {
-  background-color: #00A0D1;
-  bottom: 0;
-  width: 100%; 
-  left: 0;
-  position: fixed;
 }
 
 @media (max-width: 576px) {
@@ -140,8 +187,8 @@
   .main-screen-text .btn {
     width: 70%;
     font-size: 1.5rem;
-    background-color: #00A0D1;
-    border-color: #00A0D1;
+    background-color: #00a0d1;
+    border-color: #00a0d1;
     border-radius: 3rem;
     overflow: hidden;
     padding: 2%;

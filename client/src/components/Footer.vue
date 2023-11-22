@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <!-- Footer.vue -->
 <template>
@@ -12,7 +11,9 @@
 
 <style>
 .text-center {
-  color: white; 
-  margin-bottom: 0;
+  position: relative;
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 </style>

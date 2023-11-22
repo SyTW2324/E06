@@ -1,48 +1,89 @@
 <script setup lang="ts">
-  import Navbar from '../components/Navbar.vue'
-  import Footer from '../components/Footer.vue'
+import axios from 'axios'
+</script>
+
+<script lang="ts">
+export default {
+  data() {
+    return {
+      user: {
+        username: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    getUserAndCheckPassword() {
+      let apiURL = 'http://10.6.128.177:80/users'
+
+      console.log(apiURL)
+      axios
+        .get(apiURL, {
+          params: {
+            username: this.user.username
+          }
+        })
+        .then((response) => {
+          console.log(response)
+          if (this.user.password == response.data.password) {
+            alert('Usuario autentificado con éxito.')
+            this.user = {
+              username: '',
+              password: ''
+            }
+            this.$router.push('/')
+          } else {
+            alert('Usuario y/o contraseña incorrecto.')
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          alert('El usuario introducido no existe.')
+        })
+    }
+  }
+}
 </script>
 
 <template>
-    <div class="navbar"><Navbar /></div>
+  <div class="main-screen">
+    <div class="main-screen-text">
+      <div class="img-login">
+        <img class="user-icon" src="../assets/user_icon.png" alt="" />
+      </div>
+      <br />
 
-    <div class="main-screen">
-      <div class="main-screen-text">
-        <div class="img-login">
-          <img src="../assets/user_icon.png" alt="" width="60px" height="60px">
-        </div><br>
-
+      <form @submit.prevent="getUserAndCheckPassword">
         <div class="mb-3">
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Usuario">
+          <input
+            type="text"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Usuario"
+            v-model="user.username"
+            required
+          />
         </div>
-        <div class="mb-1">
-          <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
+        <div class="mb-5">
+          <input
+            type="password"
+            class="form-control"
+            id="inputPassword"
+            placeholder="Contraseña"
+            v-model="user.password"
+            required
+          />
         </div>
-        <div class="forgot-link">
-          <a class="forgot-link-text" href="#">Olvidé mi contraseña</a>
-        </div>
-
-        <a type="button" class="btn btn-primary" href="#">Iniciar sesión</a><br>
-        <div class="btn-register">
-          <a class="btn-register-text" href="#/register">Registrarse</a>
-        </div>
+        <button type="submit" class="btn btn-primary"><a>Iniciar sesión</a></button><br />
+      </form>
+      <div class="btn-register">
+        <a class="btn-register-text" href="/register">Registrarse</a>
       </div>
     </div>
-
-    <div class="footer"><Footer /></div>
+  </div>
 </template>
 
 <style scoped>
-#app {
-  left: 50%;
-}
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%; 
-  z-index: 1000;
-}
 .main-screen {
   width: 34%;
   background-color: #455a64e0;
@@ -53,6 +94,7 @@
   left: 33%;
   position: absolute;
 }
+
 .main-screen-text {
   color: white;
   width: 100%;
@@ -64,15 +106,21 @@
   text-align: center;
 }
 
-.img-login{
+.img-login {
   text-align: center;
+  margin-bottom: 5%;
+}
+
+.user-icon {
+  width: 15%;
+  height: 15%;
 }
 
 .main-screen-text .btn {
   width: 50%;
   font-size: 1.4rem;
-  background-color: #00A0D1;
-  border-color: #00A0D1;
+  background-color: #00a0d1;
+  border-color: #00a0d1;
   border-radius: 3rem;
   overflow: hidden;
   padding: 2%;
@@ -92,27 +140,20 @@
 }
 
 .forgot-link .forgot-link-text {
-  color: #00A0D1; 
-  text-decoration: none; 
-  cursor: pointer; 
+  color: #00a0d1;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.btn-register{
+.btn-register {
   text-align: center;
+  margin-top: 3%;
 }
 
-.btn-register .btn-register-text{
+.btn-register .btn-register-text {
   font-size: 1.25rem;
   color: white;
   text-decoration: none;
-}
-
-.footer {
-  background-color: #00A0D1;
-  bottom: 0;
-  width: 100%; 
-  left: 0;
-  position: fixed;
 }
 
 @media (max-width: 576px) {
@@ -130,8 +171,8 @@
   .main-screen-text .btn {
     width: 70%;
     font-size: 1.5rem;
-    background-color: #00A0D1;
-    border-color: #00A0D1;
+    background-color: #00a0d1;
+    border-color: #00a0d1;
     border-radius: 3rem;
     overflow: hidden;
     padding: 2%;

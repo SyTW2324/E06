@@ -3,10 +3,10 @@ import { User, UserDocumentInterface } from "../models/user.js";
 
 export const userRouter = express.Router();
 
-// Gets users by name
+// Gets user by username
 userRouter.get("/users", async (req, res) => {
   try {
-    // Gets users from the database
+    // Gets user from the database
     const filter = req.query.username ? { username: req.query.username } : {};
     const user = await User.findOne(filter);
 
@@ -23,20 +23,25 @@ userRouter.get("/users", async (req, res) => {
 // Adds an user
 userRouter.post("/users", async (req, res) => {
   try {
-    // Adds the user to the database
     const user = new User({
       ...req.body,
     });
-    await user.save();
 
-    // Sends the result to the client
+    // Checks if user already exists
+    const userSearched = await User.findOne({ username: user.username });
+    if (userSearched) {
+      return res.status(202).send("El usuario ya existe");
+    }
+
+    // Adds the user to the database
+    await user.save();
     return res.status(201).send(user);
   } catch (error) {
     return res.status(500).send(error);
   }
 });
 
-// Updates user by ID
+// Updates user by username
 userRouter.patch("/users/:username", async (req, res) => {
   try {
     // Checks if update is allowed
@@ -66,7 +71,7 @@ userRouter.patch("/users/:username", async (req, res) => {
       }
     );
 
-    // Updates the user information in the other collections
+    // Sends the result to the client
     if (userToUpdate && updatedUser) {
       return res.send(updatedUser);
     }
@@ -76,7 +81,7 @@ userRouter.patch("/users/:username", async (req, res) => {
   }
 });
 
-// Deletes user by ID
+// Deletes user by username
 userRouter.delete("/users/:username", async (req, res) => {
   try {
     // Deletes the user
@@ -84,8 +89,8 @@ userRouter.delete("/users/:username", async (req, res) => {
       username: req.params.username.toString(),
     });
 
+    // Sends the result to the client
     if (deletedUser) {
-      // Sends the result to the client
       return res.send(deletedUser);
     }
     return res.status(404).send();
