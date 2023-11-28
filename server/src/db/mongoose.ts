@@ -5,9 +5,7 @@ dotenv.config();
 const { MONGODB_URI } = process.env;
 
 if (!MONGODB_URI) {
-  console.error(
-    "No MONGODB_URI environment variable has been defined in config.env"
-  );
+  console.error("No MONGODB_URI environment variable has been defined in .env");
   process.exit(1);
 }
 
