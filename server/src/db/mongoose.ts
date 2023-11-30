@@ -1,8 +1,6 @@
-import dotenv from "dotenv";
 import { connect } from "mongoose";
 
-dotenv.config();
-const { MONGODB_URI } = process.env;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
   console.error("No MONGODB_URI environment variable has been defined in .env");
