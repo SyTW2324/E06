@@ -2,11 +2,9 @@
 
 <!-- Footer.vue -->
 <template>
-  <div class="container">
-    <footer>
-      <p class="text-center">&copy; 2023 FISHING NET, Inc</p>
-    </footer>
-  </div>
+  <footer>
+    <p class="text-center">&copy; 2023 FISHING NET, Inc</p>
+  </footer>
 </template>
 
 <style>

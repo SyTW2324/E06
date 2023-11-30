@@ -1,4 +1,30 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import auth from '../services/UserService'
+</script>
+
+<script lang="ts">
+export default {
+  data() {
+    return {
+      event: "click"
+    }
+  },
+  created() {
+    this.userLogged;
+  },
+  methods: {
+    userLogOut() {
+      auth.deleteUserLogged();
+      alert('Sesión cerrada')
+    }
+  },
+  computed: {
+    userLogged() {
+      return auth.getUserLogged();
+    }
+  }
+}
+</script>
 
 <!-- Navbar.vue -->
 <template>
@@ -33,9 +59,16 @@
               <a class="nav-link" aria-current="page" href="#">Marea</a>
             </li>
           </ul>
-          <a class="nav-item" href="/login">
-            <img src="../assets/user_icon.png" alt="" width="40px" height="40px" />
-          </a>
+          <div class="nav-item dropdown">
+            <a href="#"  id="imageDropdown" data-bs-toggle="dropdown" data-bs-display="static">
+              <img class="user-icon" src="../assets/user_icon.png" alt="">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li v-if="userLogged"><a class="dropdown-item" href="account">Mi Cuenta</a></li>
+              <li v-if="userLogged"><a class="dropdown-item" href="/" v-on:click="userLogOut">Cerrar sesión</a></li>
+              <li v-if="!userLogged"><a class="dropdown-item" href="login">Login</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
@@ -82,6 +115,21 @@
 .navbar-nav .nav-link {
   color: white;
   font-size: 20px;
+}
+
+.user-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.dropdown-menu {
+  background-color: #018cb6;
+}
+
+.dropdown-item,
+.dropdown-item:hover {
+  background-color: #018cb6;
+  color: white;
 }
 
 @media (max-width: 576px) {

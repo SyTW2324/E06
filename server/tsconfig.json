@@ -1,4 +1,6 @@
 {
+  "include": ["**/*"],
+  "exclude": ["./tests", "./node_modules", "./dist"],
   "compilerOptions": {
     "target": "ES2022",
     "module": "Node16",
@@ -7,13 +9,6 @@
     "outDir": "./dist",
     "strictNullChecks": true,
     "noImplicitReturns": true,
-    "strictPropertyInitialization": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "paths": {
-      "*": ["node_modules/*"]
-    }
-  },
-  "include": ["src/**/*"],
-  "exclude": ["./tests", "./node_modules", "./dist"]
+    "strictPropertyInitialization": true
+  }
 }

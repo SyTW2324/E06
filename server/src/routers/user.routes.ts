@@ -3,23 +3,6 @@ import { User, UserDocumentInterface } from "../models/user.js";
 
 export const userRouter = express.Router();
 
-// Gets user by username
-userRouter.get("/users", async (req, res) => {
-  try {
-    // Gets user from the database
-    const filter = req.query.username ? { username: req.query.username } : {};
-    const user = await User.findOne(filter);
-
-    // Sends the result to the client
-    if (user) {
-      return res.status(200).send(user);
-    }
-    return res.status(404).send(`Failed to find the user`);
-  } catch (error) {
-    return res.status(500).send(error);
-  }
-});
-
 // Adds an user
 userRouter.post("/users", async (req, res) => {
   try {
@@ -27,15 +10,14 @@ userRouter.post("/users", async (req, res) => {
       ...req.body,
     });
 
-    // Checks if user already exists
-    const userSearched = await User.findOne({ username: user.username });
-    if (userSearched) {
-      return res.status(202).send("El usuario ya existe");
-    }
-
     // Adds the user to the database
     await user.save();
-    return res.status(201).send(user);
+    return res.status(201).send({
+      username: user.username,
+      name: user.name,
+      email: user.email,
+      image: user.image,
+    });
   } catch (error) {
     return res.status(500).send(error);
   }
@@ -46,7 +28,7 @@ userRouter.patch("/users/:username", async (req, res) => {
   try {
     // Checks if update is allowed
     const allowedUpdates = ["email", "username", "name", "password", "image"];
-    const actualUpdates = Object.keys(req.body);
+    const actualUpdates = Object.keys(req.body.new_user);
     const isValidUpdate = actualUpdates.every((update) =>
       allowedUpdates.includes(update)
     );
@@ -60,10 +42,17 @@ userRouter.patch("/users/:username", async (req, res) => {
     const userToUpdate = await User.findOne({
       username: req.params.username.toString(),
     });
+    if (!userToUpdate) {
+      return res.status(404).send("Usuario no encontrado");
+    }
+    if (req.body.current_password != userToUpdate.password) {
+      return res.status(400).send("La contraseña es incorrecta");
+    }
+
     const updatedUser = await User.findOneAndUpdate(
       { username: req.params.username },
       {
-        ...req.body,
+        ...req.body.new_user,
       },
       {
         new: true,
@@ -72,8 +61,13 @@ userRouter.patch("/users/:username", async (req, res) => {
     );
 
     // Sends the result to the client
-    if (userToUpdate && updatedUser) {
-      return res.send(updatedUser);
+    if (updatedUser) {
+      return res.status(200).send({
+        username: updatedUser.username,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        image: updatedUser.image,
+      });
     }
     return res.status(404).send();
   } catch (error) {
@@ -91,7 +85,12 @@ userRouter.delete("/users/:username", async (req, res) => {
 
     // Sends the result to the client
     if (deletedUser) {
-      return res.send(deletedUser);
+      return res.status(200).send({
+        username: deletedUser.username,
+        name: deletedUser.name,
+        email: deletedUser.email,
+        image: deletedUser.image,
+      });
     }
     return res.status(404).send();
   } catch (error) {

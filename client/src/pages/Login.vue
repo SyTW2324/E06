@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import axios from 'axios'
+import auth from '../services/UserService'
 </script>
 
 <script lang="ts">
@@ -13,33 +13,40 @@ export default {
     }
   },
   methods: {
-    getUserAndCheckPassword() {
-      let apiURL = 'http://10.6.128.177:80/users'
-
-      console.log(apiURL)
-      axios
-        .get(apiURL, {
-          params: {
-            username: this.user.username
-          }
-        })
-        .then((response) => {
-          console.log(response)
-          if (this.user.password == response.data.password) {
-            alert('Usuario autentificado con éxito.')
-            this.user = {
-              username: '',
-              password: ''
+    async getUserAndCheckPassword() {
+      try {
+        await auth
+          .login(this.user.username, this.user.password)
+          .then((response) => {
+            console.log(response)
+            if (response.status == 200) {
+              alert('Usuario autentificado con éxito.')
+              auth.setUserLogged(
+                this.user.username + '|' + response.data.name + '|' + response.data.email
+              )
+              this.user = {
+                username: '',
+                password: ''
+              }
+              //this.$router.replace('/')
+              location.replace('/');
             }
-            this.$router.push('/')
-          } else {
-            alert('Usuario y/o contraseña incorrecto.')
-          }
-        })
-        .catch((error) => {
-          console.log(error)
-          alert('El usuario introducido no existe.')
-        })
+          })
+          .catch((error) => {
+            console.log(error)
+            if (error.response.status == 400) {
+              alert('Usuario y/o contraseña incorrecto. ' + error.response.data)
+            }
+            else if(error.response.status == 404) {
+              alert('El usuario introducido no existe. ' + error.response.data)
+            }
+            else {
+              alert('Fallo en la autentificación.')
+            }
+          })
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }

@@ -1,43 +1,52 @@
 <script setup lang="ts">
-import axios from 'axios'
+import auth from '../services/UserService'
+//import { User } from '../interfaces/User.ts'
 </script>
 
 <script lang="ts">
+interface User {
+  name: string
+  email: string
+  username: string
+  password: string
+}
+
 export default {
   data() {
     return {
-      user: {
-        name: '',
-        email: '',
-        username: '',
-        password: ''
-      }
+      user: {} as User
     }
   },
   methods: {
-    createUser() {
-      let apiURL = 'http://10.6.128.177:80/users'
-
-      console.log(this.user.name)
-      axios
-        .post(apiURL, this.user)
-        .then((response) => {
-          if (response.status == 202) {
-            alert('Usuario NO creado. ' + response.data)
-          } else {
-            alert('Usuario creado con éxito.')
-            this.$router.push('/')
-            this.user = {
-              name: '',
-              email: '',
-              username: '',
-              password: ''
+    async createUser() {
+      try {
+        await auth
+          .register(this.user)
+          .then((response) => {
+            if (response.status == 202) {
+              alert('El usuario no se pudo crear. ' + response.data)
+            } else {
+              alert('Usuario creado con éxito.')
+              auth.setUserLogged(
+                this.user.username + '|' + response.data.name + '|' + response.data.email
+              )
+              this.user = {
+                name: '',
+                email: '',
+                username: '',
+                password: ''
+              }
+              //this.$router.push('/')
+              location.replace('/')
             }
-          }
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+          })
+          .catch((error) => {
+            console.log(error)
+            alert('El usuario no se pudo crear.')
+          })
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }
@@ -71,6 +80,8 @@ export default {
             id="exampleFormControlInput1"
             placeholder="Nombre usuario"
             v-model="user.username"
+            pattern="^[a-zA-Z0-9]+$"
+            title="El nombre de usuario deben ser caracteres alfanumericos sin espacios"
             required
           />
         </div>
@@ -108,16 +119,17 @@ export default {
 
 <style scoped>
 .main-screen {
-  width: 40%;
+  width: 100%;
   background-color: #455a64e0;
   border-radius: 2rem;
   overflow: hidden;
   padding: 2%;
-  top: 25%;
-  left: 30%;
-  margin-bottom: 200px;
-  position: absolute;
+  margin-top: 25%;
+  margin-left: 50%;
+  margin-bottom: 25%;
+  position: relative;
 }
+
 .main-screen-text {
   color: white;
   width: 100%;
