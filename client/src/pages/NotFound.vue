@@ -1,24 +1,9 @@
-<script setup lang="ts">
-import auth from '../services/UserService'
-</script>
-
-<script lang="ts">
-export default {
-  computed: {
-    userLogged() {
-      return auth.getUserLogged()
-    }
-  }
-}
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="main-screen">
     <div class="main-screen-text">
-      <h1>TU</h1>
-      <h2>página de pesca</h2>
-      <div class="spacer"></div>
-      <a v-if="!userLogged" type="button" class="btn btn-primary" href="register">Regístrate</a>
+      <h1>404 NOT FOUND</h1>
     </div>
   </div>
 </template>
@@ -47,26 +32,10 @@ export default {
   text-align: center;
 }
 
-.main-screen-text .btn {
-  width: 40%;
-  font-size: 1.5rem;
-  background-color: #00a0d1;
-  border-color: #00a0d1;
-  border-radius: 3rem;
-  overflow: hidden;
-  padding: 2%;
-  left: 30%;
-  position: relative;
-}
-
 .main-screen-text h2 {
   font-size: 300%;
   font-weight: 500;
   text-align: center;
-}
-
-.spacer {
-  height: 80px;
 }
 
 @media (max-width: 576px) {

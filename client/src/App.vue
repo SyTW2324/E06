@@ -3,11 +3,11 @@ import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 </script>
 
+<!--<script type="module" src="/src/main.ts"></script>-->
+
 <template>
   <div class="navbar"><Navbar /></div>
-
   <router-view></router-view>
-
   <div class="footer"><Footer /></div>
 </template>
 
