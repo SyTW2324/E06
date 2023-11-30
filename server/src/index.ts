@@ -1,8 +1,5 @@
-import dotenv from "dotenv";
-import "./db/mongoose.js";
 import { app } from "./app.js";
 
-dotenv.config();
 const IP = process.env.IP || "localhost";
 const PORT = process.env.PORT || 5200;
 

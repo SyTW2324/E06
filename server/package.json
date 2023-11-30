@@ -2,12 +2,13 @@
   "name": "fishing-net-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsc-watch --onSuccess \"node dist/server.js\"",
+    "dev": "tsc-watch --onSuccess \"env-cmd -f ./config/dev.env node dist/index.js\"",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/index.js",
+    "test": "env-cmd -f ./config/test.env mocha --exit"
   },
   "repository": {
     "type": "git",
@@ -21,18 +22,25 @@
   },
   "homepage": "https://github.com/SyTW2324/E06#readme",
   "dependencies": {
+    "@types/request": "^2.48.12",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongoose": "^8.0.1"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.11",
     "@types/cors": "^2.8.16",
     "@types/express": "^4.17.21",
+    "@types/mocha": "^10.0.6",
     "@types/node": "^20.9.0",
+    "@types/supertest": "^2.0.16",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
+    "chai": "^4.3.10",
+    "env-cmd": "^10.1.0",
     "eslint": "^8.54.0",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3",
     "ts-node": "^10.9.1",
     "tsc-watch": "^6.0.4",
     "typescript": "^5.0.2"
