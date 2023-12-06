@@ -28,7 +28,8 @@ const routes = [
     component: Account
   }
   /*{
-    path: '/*',
+    name: '404',
+    path: '*',
     component: NotFound
   }*/
 ]

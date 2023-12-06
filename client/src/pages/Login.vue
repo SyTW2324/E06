@@ -84,7 +84,6 @@ export default {
       <div class="btn-register">
         <a class="btn-register-text" href="/register">Registrarse</a>
       </div>
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a>
     </div>
   </div>
 </template>
