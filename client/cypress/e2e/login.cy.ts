@@ -3,7 +3,7 @@
 describe('login', () => {
   beforeEach(() => {
     // Visit your Vue app or the login page directly
-    cy.visit('http://localhost:3000/login') // Update with your actual route
+    cy.visit('http://172.16.30.2:3000/login') // Update with your actual route
   })
 
   it('passes', () => {
