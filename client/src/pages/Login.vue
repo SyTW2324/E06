@@ -29,18 +29,16 @@ export default {
                 password: ''
               }
               //this.$router.replace('/')
-              location.replace('/');
+              location.replace('/')
             }
           })
           .catch((error) => {
             console.log(error)
             if (error.response.status == 400) {
               alert('Usuario y/o contraseña incorrecto. ' + error.response.data)
-            }
-            else if(error.response.status == 404) {
+            } else if (error.response.status == 404) {
               alert('El usuario introducido no existe. ' + error.response.data)
-            }
-            else {
+            } else {
               alert('Fallo en la autentificación.')
             }
           })
@@ -86,6 +84,7 @@ export default {
       <div class="btn-register">
         <a class="btn-register-text" href="/register">Registrarse</a>
       </div>
+      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a>
     </div>
   </div>
 </template>
