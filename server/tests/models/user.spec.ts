@@ -1,5 +1,4 @@
 import request from "supertest";
-import { expect } from "chai";
 import { app } from "../../src/app.js";
 import { User } from "../../src/models/user.js";
 
