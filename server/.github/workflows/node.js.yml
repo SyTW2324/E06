@@ -31,7 +31,7 @@ jobs:
           mongodb-version: ${{ matrix.mongodb-version }}
 
       - name: Install dependencies
-        run: npm i
+        run: npm --prefix server i
 
       - name: Running tests
-        run: npm run test
+        run: npm --prefix server run test
