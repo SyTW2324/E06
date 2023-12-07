@@ -13,6 +13,7 @@ describe("Modelo Fish", () => {
       .send({
         cientific_name: "Testus Fishus",
         description: "A fish for testing",
+        image_url: "/fish/testus-fishus",
         minimum_size: 22,
         habitat: "Sea",
         recommended_bait: "Crab",
@@ -26,6 +27,7 @@ describe("Modelo Fish", () => {
       .send({
         name: "Test Fish",
         description: "A fish for testing",
+        image_url: "/fish/testus-fishus",
         minimum_size: 22,
         habitat: "Sea",
         recommended_bait: "Crab",
@@ -39,6 +41,21 @@ describe("Modelo Fish", () => {
       .send({
         name: "Test Fish",
         cientific_name: "Testus Fishus",
+        image_url: "/fish/testus-fishus",
+        minimum_size: 22,
+        habitat: "Sea",
+        recommended_bait: "Crab",
+      })
+      .expect(500);
+  });
+
+  it("Debe recibir un error porque la URL de la imagen es obligatoria", async () => {
+    await request(app)
+      .post("/fishes")
+      .send({
+        name: "Test Fish",
+        cientific_name: "Testus Fishus",
+        description: "A fish for testing",
         minimum_size: 22,
         habitat: "Sea",
         recommended_bait: "Crab",
@@ -53,6 +70,7 @@ describe("Modelo Fish", () => {
         name: "Test Fish",
         cientific_name: "Testus Fishus",
         description: "A fish for testing",
+        image_url: "/fish/testus-fishus",
         habitat: "Sea",
         recommended_bait: "Crab",
       })
@@ -66,6 +84,7 @@ describe("Modelo Fish", () => {
         name: "Test Fish",
         cientific_name: "Testus Fishus",
         description: "A fish for testing",
+        image_url: "/fish/testus-fishus",
         minimum_size: 0,
         habitat: "Sea",
         recommended_bait: "Crab",
@@ -78,6 +97,7 @@ describe("Modelo Fish", () => {
         name: "Test Fish",
         cientific_name: "Testus Fishus",
         description: "A fish for testing",
+        image_url: "/fish/testus-fishus",
         minimum_size: -1,
         habitat: "Sea",
         recommended_bait: "Crab",

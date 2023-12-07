@@ -18,6 +18,22 @@ fishRouter.post("/fishes", async (req, res) => {
   }
 });
 
+// Gets all fishes
+fishRouter.get("/fishes", async (req, res) => {
+  try {
+    // Checks if fish exists
+    const fishes = await Fish.find();
+
+    // Sends the result to the client
+    if (fishes) {
+      return res.status(200).send(fishes);
+    }
+    return res.status(404).send();
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+});
+
 // Gets fish by cientific name
 fishRouter.get("/fishes/:cientific_name", async (req, res) => {
   try {
@@ -43,7 +59,7 @@ fishRouter.patch("/fishes/:cientific_name", async (req, res) => {
     const allowedUpdates = [
       "name",
       "cientific_name",
-      "image",
+      "image_url",
       "description",
       "minimum_size",
       "habitat",

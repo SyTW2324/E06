@@ -7,6 +7,7 @@ const testFish = {
   name: "Test Fish",
   cientific_name: "Testus Fishus",
   description: "A fish for testing",
+  image_url: "/fish/testusus-fishusus",
   minimum_size: 22,
   habitat: "Sea",
   recommended_bait: "Crab",
@@ -25,6 +26,7 @@ describe("POST /fishes", () => {
         name: "New Test Fish",
         cientific_name: "Testusus Fishusus",
         description: "A fish for testing",
+        image_url: "/fish/testusus-fishusus",
         minimum_size: 22,
         habitat: "Sea",
         recommended_bait: "Crab",
@@ -35,6 +37,7 @@ describe("POST /fishes", () => {
       name: "New Test Fish",
       cientific_name: "Testusus Fishusus",
       description: "A fish for testing",
+      image_url: "/fish/testusus-fishusus",
       minimum_size: 22,
       habitat: "Sea",
       recommended_bait: "Crab",
@@ -52,6 +55,23 @@ describe("POST /fishes", () => {
   });
 });
 
+describe("GET /fishes", () => {
+  it("Debe encontrar los datos de todos los peces", async () => {
+    const response = await request(app).get("/fishes").expect(200);
+
+    expect(response.body.length).to.equal(1);
+    expect(response.body[0]).to.include({
+      name: "Test Fish",
+      cientific_name: "Testus Fishus",
+      description: "A fish for testing",
+      image_url: "/fish/testusus-fishusus",
+      minimum_size: 22,
+      habitat: "Sea",
+      recommended_bait: "Crab",
+    });
+  });
+});
+
 describe("GET /fishes/:cientific_name", () => {
   it("Debe encontrar los datos del pez por su nombre científico", async () => {
     const response = await request(app)
@@ -62,6 +82,7 @@ describe("GET /fishes/:cientific_name", () => {
       name: "Test Fish",
       cientific_name: "Testus Fishus",
       description: "A fish for testing",
+      image_url: "/fish/testusus-fishusus",
       minimum_size: 22,
       habitat: "Sea",
       recommended_bait: "Crab",
@@ -81,6 +102,7 @@ describe("PATCH /fishes/:cientific_name", () => {
         name: "New Test Fish",
         cientific_name: "Testusus Fishusus",
         description: "A fish for testing",
+        image_url: "/fish/testusus-fishusus",
         minimum_size: 35,
         habitat: "River",
         recommended_bait: "Tuna",
@@ -91,6 +113,7 @@ describe("PATCH /fishes/:cientific_name", () => {
       name: "New Test Fish",
       cientific_name: "Testusus Fishusus",
       description: "A fish for testing",
+      image_url: "/fish/testusus-fishusus",
       minimum_size: 35,
       habitat: "River",
       recommended_bait: "Tuna",
@@ -109,6 +132,7 @@ describe("PATCH /fishes/:cientific_name", () => {
         name: "New Test Fish",
         cientific_name: "Testusus Fishusus",
         description: "A fish for testing",
+        image_url: "/fish/testusus-fishusus",
         minimum_size: 35,
         habitat: "River",
         recommended_bait: "Tuna",
@@ -136,6 +160,7 @@ describe("DELETE /fishes/:cientific_name", () => {
       name: "Test Fish",
       cientific_name: "Testus Fishus",
       description: "A fish for testing",
+      image_url: "/fish/testusus-fishusus",
       minimum_size: 22,
       habitat: "Sea",
       recommended_bait: "Crab",

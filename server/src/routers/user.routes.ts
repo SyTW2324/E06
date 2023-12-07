@@ -1,6 +1,5 @@
 import * as express from "express";
 import { User, UserDocumentInterface } from "../models/user.js";
-
 export const userRouter = express.Router();
 
 // Adds an user
@@ -16,7 +15,7 @@ userRouter.post("/users", async (req, res) => {
       username: user.username,
       name: user.name,
       email: user.email,
-      image: user.image,
+      image_url: user.image_url,
     });
   } catch (error) {
     return res.status(500).send(error);
@@ -27,7 +26,13 @@ userRouter.post("/users", async (req, res) => {
 userRouter.patch("/users/:username", async (req, res) => {
   try {
     // Checks if update is allowed
-    const allowedUpdates = ["email", "username", "name", "password", "image"];
+    const allowedUpdates = [
+      "email",
+      "username",
+      "name",
+      "password",
+      "image_url",
+    ];
     const actualUpdates = Object.keys(req.body.new_user);
     const isValidUpdate = actualUpdates.every((update) =>
       allowedUpdates.includes(update)
@@ -66,7 +71,7 @@ userRouter.patch("/users/:username", async (req, res) => {
         username: updatedUser.username,
         name: updatedUser.name,
         email: updatedUser.email,
-        image: updatedUser.image,
+        image_url: updatedUser.image_url,
       });
     }
     return res.status(404).send();
@@ -89,7 +94,7 @@ userRouter.delete("/users/:username", async (req, res) => {
         username: deletedUser.username,
         name: deletedUser.name,
         email: deletedUser.email,
-        image: deletedUser.image,
+        image_url: deletedUser.image_url,
       });
     }
     return res.status(404).send();
