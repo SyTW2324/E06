@@ -16,7 +16,7 @@ loginRouter.post("/login", async (req, res) => {
           username: user.username,
           name: user.name,
           email: user.email,
-          image: user.image,
+          image_url: user.image_url,
         });
       }
       return res.status(400).send(`Contraseña incorrecta`);

@@ -1,10 +1,10 @@
-import mongoose, { Document, Schema, model } from "mongoose";
+import { Document, Schema, model } from "mongoose";
 
 export interface FishDocumentInterface extends Document {
   name: string;
   cientific_name: string;
-  image: mongoose.mongo.GridFSBucket;
   description: string;
+  image_url: string;
   minimum_size: number;
   habitat: string;
   recommended_bait: string;
@@ -22,14 +22,14 @@ const FishSchema = new Schema<FishDocumentInterface>({
     required: true,
     trim: true,
   },
-  image: {
-    type: String,
-    trim: true,
-  },
   description: {
     type: String,
     required: true,
     trim: true,
+  },
+  image_url: {
+    type: String,
+    required: true,
   },
   minimum_size: {
     type: Number,

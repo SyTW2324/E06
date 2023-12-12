@@ -5,7 +5,7 @@ export interface UserDocumentInterface extends Document {
   username: string;
   name: string;
   password: string;
-  image: mongoose.mongo.GridFSBucket;
+  image_url: string;
 }
 
 const UserSchema = new Schema<UserDocumentInterface>({
@@ -47,7 +47,7 @@ const UserSchema = new Schema<UserDocumentInterface>({
       }
     },
   },
-  image: {
+  image_url: {
     type: String,
     trim: true,
   },
