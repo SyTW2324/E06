@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SLACK_WEBHOOK_URL: "https://hooks.slack.com/services/GgiUiOJJeifKY0uamYUGF1Zr"
+      SLACK_WEBHOOK_URL: "https://hooks.slack.com/services/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"
 
     strategy:
       max-parallel: 1
@@ -46,5 +46,4 @@ jobs:
         with:
           status: ${{ job.status }}
           steps: ${{ toJson(steps) }}
-          channel: "#06"
         if: always()
