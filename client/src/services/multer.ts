@@ -1,7 +1,7 @@
-const multer = require('multer')
+//const multer = require('multer')
 
 function uploadFile(files: any) {
-  const storage = multer.diskStorage({
+  /*const storage = multer.diskStorage({
     destination: '../carpeta',
     filename: function (_req: any, file: any, cb: any) {
       var extension = file.originalname.slice(file.originalname.lastIndexOf('.'))
@@ -9,7 +9,7 @@ function uploadFile(files: any) {
     }
   })
   const upload = multer({ storage }).array('file')
-  return upload
+  return upload*/
 }
 
 export default uploadFile
