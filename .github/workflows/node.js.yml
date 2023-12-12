@@ -40,11 +40,3 @@ jobs:
       - name: Running tests
         working-directory: ./server
         run: npm test
-
-      - name: Slack notification
-        uses: act10ns/slack@v2
-        with:
-          status: ${{ job.status }}
-          steps: ${{ toJson(steps) }}
-          channel: "#06"
-        if: always()
