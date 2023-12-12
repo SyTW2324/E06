@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import auth from '../services/UserService'
+import multer from '../services/multer'
 </script>
 
 <script lang="ts">
@@ -15,14 +16,32 @@ export default {
   data() {
     return {
       user: {} as User,
-      image: ''
+      image: null
     }
   },
   methods: {
     onFileChange(e: any) {
-      var files = e.target.files || e.dataTransfer.files
+      /*var files = e.target.files || e.dataTransfer.files
       if (!files.length) return
-      this.createImage(files[0])
+      this.createImage(files[0])*/
+      var file = e.target.files[0]
+      const allowedTypes = [
+        'application/pdf',
+        'application/docx',
+        'application/txt',
+        'image/jpg',
+        'image/jpeg',
+        'image/png',
+        'image/gif'
+      ]
+
+      if (allowedTypes.includes(file.type)) {
+        this.image = file
+        this.user.image_url = '../carpeta'
+        console.log('Entro')
+      } else {
+        console.log('No Entro')
+      }
     },
     createImage(file: any) {
       var reader = new FileReader()
@@ -52,6 +71,9 @@ export default {
                 password: '',
                 image_url: ''
               }
+              const formdata = new FormData()
+              formdata.append('file', this.image)
+              //multer.uploadFile(formdata)
               //this.$router.push('/')
               location.replace('/')
             }

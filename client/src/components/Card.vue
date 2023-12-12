@@ -7,29 +7,6 @@ defineProps<{
 }>()
 </script>
 
-<script lang="ts">
-/*export default {
-  data() {
-    return {
-      image: {
-        src: this.image_url,
-        alt: this.cientific_name
-      }
-    }
-  },
-  created() {
-    console.log('hola')
-    this.setImage()
-  },
-  methods: {
-    setImage() {
-      this.image.src = this.image_url
-      console.log('he')
-    }
-  }
-}*/
-</script>
-
 <template>
   <div class="card" style="width: 18rem">
     <img class="card-img-top" :src="image_url" :alt="cientific_name" id="fish_image" />
