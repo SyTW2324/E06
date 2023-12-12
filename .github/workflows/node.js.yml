@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SLACK_WEBHOOK_URL: "sytw:GgiUiOJJeifKY0uamYUGF1Zr"
+      SLACK_WEBHOOK_URL: "GgiUiOJJeifKY0uamYUGF1Zr"
 
     strategy:
       max-parallel: 1
