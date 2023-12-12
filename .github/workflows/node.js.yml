@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SLACK_WEBHOOK_URL: "GgiUiOJJeifKY0uamYUGF1Zr"
+      SLACK_WEBHOOK_URL: "https://hooks.slack.com/services/GgiUiOJJeifKY0uamYUGF1Zr"
 
     strategy:
       max-parallel: 1
@@ -40,3 +40,11 @@ jobs:
       - name: Running tests
         working-directory: ./server
         run: npm test
+
+      - name: Slack notification
+        uses: act10ns/slack@v2
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "#06"
+        if: always()
