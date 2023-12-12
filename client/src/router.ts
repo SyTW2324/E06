@@ -4,6 +4,7 @@ import Home from './pages/Home.vue'
 import Login from './pages/Login.vue'
 import Register from './pages/Register.vue'
 import Account from './pages/Account.vue'
+import Fishes from './pages/Fishes.vue'
 import NotFound from './pages/NotFound.vue'
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
     name: 'cuenta',
     path: '/account',
     component: Account
+  },
+  {
+    name: 'peces',
+    path: '/fishes',
+    component: Fishes
   }
   /*{
     name: '404',

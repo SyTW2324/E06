@@ -6,21 +6,21 @@ import auth from '../services/UserService'
 export default {
   data() {
     return {
-      event: "click"
+      event: 'click'
     }
   },
   created() {
-    this.userLogged;
+    this.userLogged
   },
   methods: {
     userLogOut() {
-      auth.deleteUserLogged();
+      auth.deleteUserLogged()
       alert('Sesión cerrada')
     }
   },
   computed: {
     userLogged() {
-      return auth.getUserLogged();
+      return auth.getUserLogged()
     }
   }
 }
@@ -50,7 +50,7 @@ export default {
               <a class="nav-link" aria-current="page" href="#">Foro</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Fauna</a>
+              <a class="nav-link" aria-current="page" href="/fishes">Fauna</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="#">Mapa</a>
@@ -60,12 +60,14 @@ export default {
             </li>
           </ul>
           <div class="nav-item dropdown">
-            <a href="#"  id="imageDropdown" data-bs-toggle="dropdown" data-bs-display="static">
-              <img class="user-icon" src="../assets/user_icon.png" alt="">
+            <a href="#" id="imageDropdown" data-bs-toggle="dropdown" data-bs-display="static">
+              <img class="user-icon" src="../assets/user_icon.png" alt="" />
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li v-if="userLogged"><a class="dropdown-item" href="account">Mi Cuenta</a></li>
-              <li v-if="userLogged"><a class="dropdown-item" href="/" v-on:click="userLogOut">Cerrar sesión</a></li>
+              <li v-if="userLogged">
+                <a class="dropdown-item" href="/" v-on:click="userLogOut">Cerrar sesión</a>
+              </li>
               <li v-if="!userLogged"><a class="dropdown-item" href="login">Login</a></li>
             </ul>
           </div>
