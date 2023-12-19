@@ -3,21 +3,22 @@
 <template>
   <div class="main-screen">
     <div class="main-screen-text">
-      <h1>404 NOT FOUND</h1>
+      <h1>404</h1>
+      <h1>PAGE NOT FOUND</h1>
     </div>
   </div>
 </template>
 
 <style scoped>
 .main-screen {
-  width: 34%;
+  width: 45%;
   background-color: #455a64e0;
   border-radius: 2rem;
   overflow: hidden;
   padding-top: 2%;
   padding-bottom: 2%;
   top: 25%;
-  left: 33%;
+  left: 27%;
   position: absolute;
 }
 

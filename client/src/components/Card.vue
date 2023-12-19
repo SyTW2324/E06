@@ -20,7 +20,7 @@ defineProps<{
       <li class="list-group-item">Talla mínima: {{ minimum_size }} cm</li>
     </ul>
     <div class="card-body">
-      <button href="#" class="btn btn-primary btn-sm">Más info...</button>
+      <router-link :to="{ name: 'pezDetalle', params: { id: cientific_name } }" class="btn btn-primary btn-sm">Más info...</router-link>
     </div>
   </div>
 </template>
