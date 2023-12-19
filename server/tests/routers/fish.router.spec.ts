@@ -89,7 +89,7 @@ describe("GET /fishes/:cientific_name", () => {
     });
   });
 
-  it("Debe recibir un error porque no hay peces con ese nombre nombre científico", async () => {
+  it("Debe recibir un error porque no hay peces con ese nombre científico", async () => {
     await request(app).get("/fishes/Testusus Fishusus").expect(404);
   });
 });
