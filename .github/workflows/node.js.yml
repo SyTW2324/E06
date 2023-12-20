@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SLACK_WEBHOOK_URL: "https://hooks.slack.com/services/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"
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
     strategy:
       max-parallel: 1

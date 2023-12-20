@@ -68,7 +68,6 @@ export default {
             <p>{{ $data.fish.habitat }}</p>
 
             <p><strong>Talla minima: </strong>{{ $data.fish.minimum_size }} cm</p>
-
             
             <p><strong>Carnada recomendada: </strong>{{ $data.fish.recommended_bait }}</p>
           </div>
