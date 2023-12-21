@@ -59,21 +59,27 @@ export default {
         <div class="row">
           <div class="col-8">
             <h1>{{ $data.fish.name }}</h1>
-            <h2>{{ $data.fish.cientific_name }}</h2><br>
+            <h2>{{ $data.fish.cientific_name }}</h2>
+            <br />
 
             <strong>Descripción: </strong>
-            <p style="text-align: justify;">{{ $data.fish.description }}</p>
+            <p style="text-align: justify">{{ $data.fish.description }}</p>
 
             <strong>Hábitat: </strong>
             <p>{{ $data.fish.habitat }}</p>
 
-            <p><strong>Talla minima: </strong>{{ $data.fish.minimum_size }} cm</p>
-            
+            <p><strong>Talla mínima: </strong>{{ $data.fish.minimum_size }} cm</p>
+
             <p><strong>Carnada recomendada: </strong>{{ $data.fish.recommended_bait }}</p>
           </div>
           <div class="col col-img">
             <div class="rounded-div">
-              <img class="card-img-top" :src="$data.fish.image_url" :alt="$data.fish.cientific_name" id="fish_image" />
+              <img
+                class="card-img-top"
+                :src="$data.fish.image_url"
+                :alt="$data.fish.cientific_name"
+                id="fish_image"
+              />
             </div>
           </div>
         </div>
@@ -114,7 +120,7 @@ export default {
   overflow: hidden;
 }
 
-@media (max-width: 576px) { 
+@media (max-width: 576px) {
   .main-screen {
     width: 90%;
     background-color: #455a64e0;
@@ -129,7 +135,7 @@ export default {
     flex-direction: column;
   }
 
-  .col-8{
+  .col-8 {
     width: 100%;
   }
 }
