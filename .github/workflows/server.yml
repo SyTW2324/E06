@@ -1,0 +1,54 @@
+name: Backend Actions
+
+on:
+  push:
+    branches: ["release", "main"]
+  pull_request:
+    branches: ["release", "main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: "npm"
+
+      - name: Start MongoDB 6.0
+        uses: supercharge/mongodb-github-action@1.9.0
+        with:
+          mongodb-version: "6.0"
+
+      - name: Install dependencies
+        working-directory: ./server
+        run: npm i
+
+      - name: Run tests and generate coverage info
+        working-directory: ./server
+        run: npm run coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          path-to-lcov: ./server/coverage/lcov.info
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+
+      - name: Slack notification
+        uses: act10ns/slack@v2
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: always()

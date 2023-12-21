@@ -4,6 +4,8 @@ import Home from './pages/Home.vue'
 import Login from './pages/Login.vue'
 import Register from './pages/Register.vue'
 import Account from './pages/Account.vue'
+import Fishes from './pages/Fishes.vue'
+import FishDetails from './pages/FishDetails.vue'
 import NotFound from './pages/NotFound.vue'
 
 const routes = [
@@ -26,11 +28,22 @@ const routes = [
     name: 'cuenta',
     path: '/account',
     component: Account
-  }
-  /*{
-    path: '/*',
+  },
+  {
+    name: 'peces',
+    path: '/fishes',
+    component: Fishes
+  },
+  {
+    name: 'pezDetalle',
+    path: '/fishes/:id',
+    component: FishDetails
+  },
+  {
+    name: 'NotFound',
+    path: '/:catchAll(.*)',
     component: NotFound
-  }*/
+  }
 ]
 
 const router = createRouter({

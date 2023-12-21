@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import auth from '../services/UserService'
-//import { User } from '../interfaces/User.ts'
+import multer from '../services/multer'
 </script>
 
 <script lang="ts">
@@ -9,15 +9,49 @@ interface User {
   email: string
   username: string
   password: string
+  image_url: string
 }
 
 export default {
   data() {
     return {
-      user: {} as User
+      user: {} as User,
+      image: null
     }
   },
   methods: {
+    onFileChange(e: any) {
+      /*var files = e.target.files || e.dataTransfer.files
+      if (!files.length) return
+      this.createImage(files[0])*/
+      var file = e.target.files[0]
+      const allowedTypes = [
+        'application/pdf',
+        'application/docx',
+        'application/txt',
+        'image/jpg',
+        'image/jpeg',
+        'image/png',
+        'image/gif'
+      ]
+
+      if (allowedTypes.includes(file.type)) {
+        this.image = file
+        this.user.image_url = '../carpeta'
+        console.log('Entro')
+      } else {
+        console.log('No Entro')
+      }
+    },
+    createImage(file: any) {
+      var reader = new FileReader()
+      var vm = this
+
+      reader.onload = (e) => {
+        vm.image = e!.target!.result as string
+      }
+      reader.readAsDataURL(file)
+    },
     async createUser() {
       try {
         await auth
@@ -34,8 +68,12 @@ export default {
                 name: '',
                 email: '',
                 username: '',
-                password: ''
+                password: '',
+                image_url: ''
               }
+              const formdata = new FormData()
+              formdata.append('file', this.image)
+              //multer.uploadFile(formdata)
               //this.$router.push('/')
               location.replace('/')
             }
@@ -53,72 +91,84 @@ export default {
 </script>
 
 <template>
-  <div class="main-screen">
-    <div class="main-screen-text">
-      <div class="img-login">
-        <img class="user-icon" src="../assets/user_icon.png" alt="" />
+  <div class="main-container">
+    <div class="main-screen">
+      <div class="main-screen-text">
+        <div class="img-login">
+          <img class="user-icon" src="../assets/user_icon.png" alt="" />
+        </div>
+        <br />
+
+        <form @submit.prevent="createUser">
+          <div class="mb-2">
+            <label for="exampleFormControlInput1" class="form-label">Nombre Completo</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Nombre"
+              v-model="user.name"
+              required
+            />
+          </div>
+          <div class="mb-2">
+            <label for="exampleFormControlInput1" class="form-label">Nombre de usuario</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Nombre usuario"
+              v-model="user.username"
+              pattern="^[a-zA-Z0-9]+$"
+              title="El nombre de usuario deben ser caracteres alfanumericos sin espacios"
+              required
+            />
+          </div>
+          <div class="mb-2">
+            <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword"
+              placeholder="Contraseña"
+              v-model="user.password"
+              pattern="^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$"
+              title="La contraseña debe tener entre 6 y 16 caracteres y contener un número"
+              required
+            />
+            <!--La contraseña debe tener entre 6 y 16 caracteres y contener un número-->
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="nombre@email.com"
+              v-model="user.email"
+              required
+            />
+          </div>
+          <div class="mb-5">
+            <label for="inputImage" class="form-label">Imagen de perfil</label>
+            <input
+              type="file"
+              class="form-control"
+              id="inputImage"
+              accept="image/*"
+              @change="onFileChange"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary"><a>Registrarse</a></button><br />
+        </form>
       </div>
-      <br />
-
-      <form @submit.prevent="createUser">
-        <div class="mb-2">
-          <label for="exampleFormControlInput1" class="form-label">Nombre Completo</label>
-          <input
-            type="text"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Nombre"
-            v-model="user.name"
-            required
-          />
-        </div>
-        <div class="mb-2">
-          <label for="exampleFormControlInput1" class="form-label">Nombre de usuario</label>
-          <input
-            type="text"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Nombre usuario"
-            v-model="user.username"
-            pattern="^[a-zA-Z0-9]+$"
-            title="El nombre de usuario deben ser caracteres alfanumericos sin espacios"
-            required
-          />
-        </div>
-        <div class="mb-2">
-          <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
-          <input
-            type="password"
-            class="form-control"
-            id="inputPassword"
-            placeholder="Contraseña"
-            v-model="user.password"
-            pattern="^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$"
-            title="La contraseña debe tener entre 6 y 16 caracteres y contener un número"
-            required
-          />
-          <!--La contraseña debe tener entre 6 y 16 caracteres y contener un número-->
-        </div>
-        <div class="mb-5">
-          <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="nombre@email.com"
-            v-model="user.email"
-            required
-          />
-        </div>
-
-        <button type="submit" class="btn btn-primary"><a>Registrarse</a></button><br />
-      </form>
     </div>
   </div>
 </template>
 
 <style scoped>
-.main-screen {
+/*.main-screen {
   width: 100%;
   background-color: #455a64e0;
   border-radius: 2rem;
@@ -127,6 +177,21 @@ export default {
   margin-top: 25%;
   margin-left: 50%;
   margin-bottom: 25%;
+  position: relative;
+}*/
+
+.main-container {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.main-screen {
+  width: 50%;
+  background-color: #455a64e0;
+  border-radius: 2rem;
+  overflow: hidden;
+  padding: 2%;
+  left: 25%;
   position: relative;
 }
 
@@ -186,14 +251,14 @@ export default {
 
 @media (max-width: 576px) {
   .main-screen {
-    width: 70%;
+    width: 90%;
     background-color: #455a64e0;
     border-radius: 2rem;
     overflow: hidden;
     padding-top: 2%;
     padding-bottom: 2%;
-    left: 15%;
-    position: absolute;
+    left: 5%;
+    position: relative;
   }
 
   .main-screen-text .btn {

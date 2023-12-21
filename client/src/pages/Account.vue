@@ -121,91 +121,93 @@ export default {
 </script>
 
 <template>
-  <div class="main-screen">
-    <div class="main-screen-text">
-      <div class="img-login">
-        <img class="user-icon" src="../assets/user_icon.png" alt="" />
-      </div>
+  <div class="main-container">
+    <div class="main-screen">
+      <div class="main-screen-text">
+        <div class="img-login">
+          <img class="user-icon" src="../assets/user_icon.png" alt="" />
+        </div>
 
-      <h5 style="text-align: center; color: black">
-        Para modificar cualquier campo introducir nuevos datos
-      </h5>
-      <form @submit.prevent="changeUserData">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Nombre de usuario</label>
-          <input
-            type="text"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Usuario"
-            v-model="user.username"
-            pattern="^[a-zA-Z0-9]+$"
-            title="El nombre de usuario deben ser caracteres alfanumericos sin espacios"
-            required
-          />
+        <h5 style="text-align: center; color: black">
+          Para modificar cualquier campo introducir nuevos datos
+        </h5>
+        <form @submit.prevent="changeUserData">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nombre de usuario</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Usuario"
+              v-model="user.username"
+              pattern="^[a-zA-Z0-9]+$"
+              title="El nombre de usuario deben ser caracteres alfanumericos sin espacios"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nombre completo</label>
+            <input
+              type="Nombre"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Nombre"
+              v-model="user.name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="email@prueba.com"
+              v-model="user.email"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Contraseña actual (Para cualquier cambio será necesaria la contraseña)</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword"
+              placeholder="Contraseña"
+              v-model="user.password"
+              pattern="^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$"
+              title="La contraseña debe tener entre 6 y 16 caracteres y contener un número"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Nueva contraseña (Si se desea cambiar)</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword"
+              placeholder=" Nueva Contraseña"
+              v-model="user.new_password"
+              pattern="^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$"
+              title="La contraseña debe tener entre 6 y 16 caracteres y contener un número"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary"><a>Cambiar datos</a></button><br />
+        </form>
+        <div class="btn-deleteUser">
+          <button v-on:click="userDelete" class="btn btn-primary"><a>Borrar Usuario</a></button><br />
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Nombre completo</label>
-          <input
-            type="Nombre"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Nombre"
-            v-model="user.name"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="email@prueba.com"
-            v-model="user.email"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label"
-            >Contraseña actual (Para cualquier cambio será necesaria la contraseña)</label
-          >
-          <input
-            type="password"
-            class="form-control"
-            id="inputPassword"
-            placeholder="Contraseña"
-            v-model="user.password"
-            pattern="^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$"
-            title="La contraseña debe tener entre 6 y 16 caracteres y contener un número"
-            required
-          />
-        </div>
-        <div class="mb-4">
-          <label for="exampleFormControlInput1" class="form-label"
-            >Nueva contraseña (Si se desea cambiar)</label
-          >
-          <input
-            type="password"
-            class="form-control"
-            id="inputPassword"
-            placeholder=" Nueva Contraseña"
-            v-model="user.new_password"
-            pattern="^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$"
-            title="La contraseña debe tener entre 6 y 16 caracteres y contener un número"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary"><a>Cambiar datos</a></button><br />
-      </form>
-      <div class="btn-deleteUser">
-        <button v-on:click="userDelete" class="btn btn-primary"><a>Borrar Usuario</a></button><br />
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.main-screen {
+/*.main-screen {
   width: 100%;
   background-color: #455a64e0;
   border-radius: 2rem;
@@ -216,6 +218,21 @@ export default {
   margin-bottom: 25%;
   position: relative;
   justify-content: center;
+}*/
+
+.main-container {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.main-screen {
+  width: 60%;
+  background-color: #455a64e0;
+  border-radius: 2rem;
+  overflow: hidden;
+  padding: 2%;
+  left: 20%;
+  position: relative;
 }
 
 .main-screen-text {
@@ -275,14 +292,14 @@ export default {
 
 @media (max-width: 576px) {
   .main-screen {
-    width: 70%;
+    width: 90%;
     background-color: #455a64e0;
     border-radius: 2rem;
     overflow: hidden;
     padding-top: 2%;
     padding-bottom: 2%;
-    left: 15%;
-    position: absolute;
+    left: 5%;
+    position: relative;
   }
 
   .main-screen-text .btn {
@@ -296,5 +313,17 @@ export default {
     left: 15%;
     position: relative;
   }
+
+  .main-screen-text  .btn-deleteUser .btn {
+  width: 70%;
+  font-size: 1.4rem;
+  background-color: #a8a8a8;
+  border-color: #a8a8a8;
+  border-radius: 3rem;
+  overflow: hidden;
+  padding: 2%;
+  left: 15%;
+  position: relative;
+}
 }
 </style>

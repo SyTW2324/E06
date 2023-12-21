@@ -40,7 +40,7 @@ describe("POST /users", () => {
     expect(NewTestUser!.username).to.equal("testuser3");
   });
 
-  it("Debe recibir un error porque la ruta ya existe", async () => {
+  it("Debe recibir un error porque el usuario ya existe", async () => {
     await request(app).post("/users").send(testUser).expect(500);
   });
 });
@@ -116,7 +116,7 @@ describe("PATCH /users/:username", () => {
 });
 
 describe("DELETE /users/:username", () => {
-  it("Debe borrar la ruta por su nombre de usuario", async () => {
+  it("Debe borrar el usuario por su nombre de usuario", async () => {
     const response = await request(app).delete("/users/testuser1").expect(200);
     expect(response.body).to.include({
       username: "testuser1",

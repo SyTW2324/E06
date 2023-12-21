@@ -29,18 +29,16 @@ export default {
                 password: ''
               }
               //this.$router.replace('/')
-              location.replace('/');
+              location.replace('/')
             }
           })
           .catch((error) => {
             console.log(error)
             if (error.response.status == 400) {
               alert('Usuario y/o contraseña incorrecto. ' + error.response.data)
-            }
-            else if(error.response.status == 404) {
+            } else if (error.response.status == 404) {
               alert('El usuario introducido no existe. ' + error.response.data)
-            }
-            else {
+            } else {
               alert('Fallo en la autentificación.')
             }
           })
