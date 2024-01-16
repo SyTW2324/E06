@@ -13,20 +13,17 @@ const routes = [
     name: 'home',
     path: '/',
     component: Home,
-    children: [
-      {
-        name: 'login',
-        path: 'login',
-        component: Login
-      },
-      {
-        name: 'register',
-        path: 'register',
-        component: Register
-      },
-    ]
   },
-  
+  {
+    name: 'login',
+    path: 'login',
+    component: Login
+  },
+  {
+    name: 'register',
+    path: 'register',
+    component: Register
+  },
   {
     name: 'cuenta',
     path: '/account',
