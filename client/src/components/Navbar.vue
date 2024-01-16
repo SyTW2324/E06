@@ -50,7 +50,7 @@ export default {
               <a class="nav-link" aria-current="page" href="#">Foro</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/fishes">Fauna</a>
+              <router-link to="/fishes" class="nav-link" aria-current="page">Fauna</router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="#">Mapa</a>
@@ -68,7 +68,9 @@ export default {
               <li v-if="userLogged">
                 <a class="dropdown-item" href="/" v-on:click="userLogOut">Cerrar sesión</a>
               </li>
-              <li v-if="!userLogged"><a class="dropdown-item" href="login">Login</a></li>
+              <li v-if="!userLogged">
+                <router-link to="/login" class="dropdown-item">Login</router-link>
+              </li>
             </ul>
           </div>
         </div>
