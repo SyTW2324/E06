@@ -47,9 +47,9 @@ export default {
       var reader = new FileReader()
       var vm = this
 
-      reader.onload = (e) => {
+      /*reader.onload = (e) => {
         vm.image = e!.target!.result as string
-      }
+      }*/
       reader.readAsDataURL(file)
     },
     async createUser() {
@@ -71,8 +71,8 @@ export default {
                 password: '',
                 image_url: ''
               }
-              const formdata = new FormData()
-              formdata.append('file', this.image)
+              //const formdata = new FormData()
+              //formdata.append('file', this.image)
               //multer.uploadFile(formdata)
               //this.$router.push('/')
               location.replace('/')
