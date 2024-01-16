@@ -1,7 +1,8 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-const ENDPOINT_PATH = 'http://10.6.128.177:80/server/users'
+const ENDPOINT_PATH_USER = 'https://dark-khakis-mite.cyclic.app/users'
+const ENDPOINT_PATH_LOGIN = 'https://dark-khakis-mite.cyclic.app/login'
 
 interface User {
   name: string
@@ -24,19 +25,19 @@ const auth = {
   },
 
   login(username: string, password: string) {
-    return axios.post('http://10.6.128.177:80/server/login', { username: username, password: password })
+    return axios.post(ENDPOINT_PATH_LOGIN, { username: username, password: password })
   },
 
   register(user: User) {
-    return axios.post(ENDPOINT_PATH, user)
+    return axios.post(ENDPOINT_PATH_USER, user)
   },
 
   changeUserData(new_user: User, username: string, password: string) {
-    return axios.patch(ENDPOINT_PATH + '/' + username, { new_user: new_user, current_password: password })
+    return axios.patch(ENDPOINT_PATH_USER + '/' + username, { new_user: new_user, current_password: password })
   },
 
   deleteUser(username: string) {
-    return axios.delete(ENDPOINT_PATH + '/' + username)
+    return axios.delete(ENDPOINT_PATH_USER + '/' + username)
   }
 }
 
