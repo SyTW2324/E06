@@ -92,6 +92,7 @@ export default {
             this.user.new_password = ''
             alert('Actualización realizada con exito.')
             //location.reload()
+            location.replace('/account')
           })
           .catch((error) => {
             console.log(error)
@@ -195,9 +196,7 @@ export default {
               title="La contraseña debe tener entre 6 y 16 caracteres y contener un número"
             />
           </div>
-          <router-link to="/account">
-            <button type="submit" class="btn btn-primary">Cambiar datos</button>
-          </router-link>
+          <button type="submit" class="btn btn-primary"><a>Cambiar datos</a></button><br />
         </form>
         <div class="btn-deleteUser">
           <button v-on:click="userDelete" class="btn btn-primary"><a>Borrar Usuario</a></button><br />
