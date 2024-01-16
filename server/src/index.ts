@@ -1,7 +1,7 @@
 import { app } from "./app.js";
 
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT;
 
-app.listen(+PORT, () => {
-  console.log(`Servidor escuchando en el puerto ${PORT}`);
+app.listen(port, () => {
+  console.log(`Servidor escuchando en el puerto ${port}`);
 });
