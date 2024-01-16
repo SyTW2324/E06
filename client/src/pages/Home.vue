@@ -18,7 +18,10 @@ export default {
       <h1>TU</h1>
       <h2>página de pesca</h2>
       <div class="spacer"></div>
-      <a v-if="!userLogged" type="button" class="btn btn-primary" href="register">Regístrate</a>
+      <!--<a v-if="!userLogged" type="button" class="btn btn-primary" href="register">Regístrate</a>-->
+      <router-link v-if="!userLogged" to="/register" tag="button" class="btn btn-primary"
+        >Regístrate</router-link
+      >
     </div>
   </div>
 </template>
