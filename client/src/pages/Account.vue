@@ -195,7 +195,9 @@ export default {
               title="La contraseña debe tener entre 6 y 16 caracteres y contener un número"
             />
           </div>
-          <button type="submit" class="btn btn-primary"><a>Cambiar datos</a></button><br />
+          <router-link to="/account">
+            <button type="submit" class="btn btn-primary">Cambiar datos</button>
+          </router-link>
         </form>
         <div class="btn-deleteUser">
           <button v-on:click="userDelete" class="btn btn-primary"><a>Borrar Usuario</a></button><br />
