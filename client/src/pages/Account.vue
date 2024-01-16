@@ -91,9 +91,7 @@ export default {
             this.user.password = ''
             this.user.new_password = ''
             alert('Actualización realizada con exito.')
-            //location.reload()
-            //location.replace('/account')
-            //this.$router.replace('/account')
+            location.reload()
           })
           .catch((error) => {
             console.log(error)
