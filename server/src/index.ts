@@ -1,5 +1,5 @@
 //import { app } from "./app.js";
-const { app } = require("./app.js");
+const { app } = require("./app.mjs");
 
 const PORT = process.env.PORT || 3000;
 
