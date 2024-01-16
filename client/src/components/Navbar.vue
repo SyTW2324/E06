@@ -64,7 +64,9 @@ export default {
               <img class="user-icon" src="../assets/user_icon.png" alt="" />
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li v-if="userLogged"><a class="dropdown-item" href="account">Mi Cuenta</a></li>
+              <li v-if="userLogged">
+                <router-link to="/account" class="dropdown-item">Mi Cuenta</router-link>
+              </li>
               <li v-if="userLogged">
                 <a class="dropdown-item" href="/" v-on:click="userLogOut">Cerrar sesión</a>
               </li>

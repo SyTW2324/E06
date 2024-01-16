@@ -82,7 +82,7 @@ export default {
         <button type="submit" class="btn btn-primary"><a>Iniciar sesión</a></button><br />
       </form>
       <div class="btn-register">
-        <a class="btn-register-text" href="/register">Registrarse</a>
+        <router-link to="/register" class="btn-register-text">Registrarse</router-link>
       </div>
     </div>
   </div>
