@@ -48,7 +48,6 @@ export default {
                 new_password: ''
               }
               alert('Usuario eliminado')
-              //this.$router.replace('/')
               location.replace('/')
               console.log(response)
             })
@@ -92,7 +91,7 @@ export default {
             this.user.password = ''
             this.user.new_password = ''
             alert('Actualización realizada con exito.')
-            location.reload()
+            //location.reload()
           })
           .catch((error) => {
             console.log(error)

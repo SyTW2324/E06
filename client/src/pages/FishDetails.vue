@@ -79,7 +79,7 @@ export default {
                 :src="$data.fish.image_url"
                 :alt="$data.fish.cientific_name"
                 id="fish_image"
-              />
+              />  <img class="card-img-top" :src="image_url" :alt="cientific_name" id="fish_image" />
             </div>
           </div>
         </div>
