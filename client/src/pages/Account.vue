@@ -93,7 +93,7 @@ export default {
             alert('Actualización realizada con exito.')
             //location.reload()
             //location.replace('/account')
-            this.$router.replace('/account')
+            //this.$router.replace('/account')
           })
           .catch((error) => {
             console.log(error)
