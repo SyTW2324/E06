@@ -1,8 +1,7 @@
 import { app } from "./app.js";
 
-const IP = process.env.IP || "localhost";
-const PORT = process.env.PORT || 5200;
+const PORT = process.env.PORT || 3000;
 
-app.listen(+PORT, IP, () => {
-  console.log(`Servidor escuchando en el puerto ${PORT} de la dirección ${IP}`);
+app.listen(+PORT, () => {
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
