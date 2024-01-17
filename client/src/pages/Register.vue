@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import auth from '../services/UserService'
-import multer from '../services/multer'
 </script>
 
 <script lang="ts">
@@ -9,49 +8,15 @@ interface User {
   email: string
   username: string
   password: string
-  image_url: string
 }
 
 export default {
   data() {
     return {
-      user: {} as User,
-      image: null
+      user: {} as User
     }
   },
   methods: {
-    onFileChange(e: any) {
-      /*var files = e.target.files || e.dataTransfer.files
-      if (!files.length) return
-      this.createImage(files[0])*/
-      var file = e.target.files[0]
-      const allowedTypes = [
-        'application/pdf',
-        'application/docx',
-        'application/txt',
-        'image/jpg',
-        'image/jpeg',
-        'image/png',
-        'image/gif'
-      ]
-
-      if (allowedTypes.includes(file.type)) {
-        this.image = file
-        this.user.image_url = '../carpeta'
-        console.log('Entro')
-      } else {
-        console.log('No Entro')
-      }
-    },
-    createImage(file: any) {
-      var reader = new FileReader()
-      var vm = this
-
-      /*reader.onload = (e) => {
-        vm.image = e!.target!.result as string
-      }*/
-      reader.readAsDataURL(file)
-    },
     async createUser() {
       try {
         await auth
@@ -68,13 +33,8 @@ export default {
                 name: '',
                 email: '',
                 username: '',
-                password: '',
-                image_url: ''
+                password: ''
               }
-              //const formdata = new FormData()
-              //formdata.append('file', this.image)
-              //multer.uploadFile(formdata)
-              //this.$router.push('/')
               location.replace('/')
             }
           })
@@ -138,7 +98,7 @@ export default {
             />
             <!--La contraseña debe tener entre 6 y 16 caracteres y contener un número-->
           </div>
-          <div class="mb-3">
+          <div class="mb-5">
             <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
             <input
               type="email"
@@ -147,16 +107,6 @@ export default {
               placeholder="nombre@email.com"
               v-model="user.email"
               required
-            />
-          </div>
-          <div class="mb-5">
-            <label for="inputImage" class="form-label">Imagen de perfil</label>
-            <input
-              type="file"
-              class="form-control"
-              id="inputImage"
-              accept="image/*"
-              @change="onFileChange"
             />
           </div>
 
@@ -168,18 +118,6 @@ export default {
 </template>
 
 <style scoped>
-/*.main-screen {
-  width: 100%;
-  background-color: #455a64e0;
-  border-radius: 2rem;
-  overflow: hidden;
-  padding: 2%;
-  margin-top: 25%;
-  margin-left: 50%;
-  margin-bottom: 25%;
-  position: relative;
-}*/
-
 .main-container {
   padding-top: 100px;
   padding-bottom: 100px;
@@ -237,16 +175,6 @@ export default {
   font-size: 300%;
   font-weight: 500;
   text-align: center;
-}
-
-.btn-register {
-  text-align: center;
-}
-
-.btn-register .btn-register-text {
-  font-size: 1.25rem;
-  color: white;
-  text-decoration: none;
 }
 
 @media (max-width: 576px) {

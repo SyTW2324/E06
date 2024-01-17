@@ -109,10 +109,6 @@ export default {
   text-align: center;
 }
 
-.search-bar {
-  margin-bottom: 20px;
-}
-
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -120,9 +116,4 @@ export default {
   gap: 20px;
   margin-left: 6%;
 }
-
-/*.card {
-  flex: 0 0 calc(33% - 20px);
-  margin-bottom: 20px;
-}*/
 </style>

@@ -28,7 +28,6 @@ export default {
                 username: '',
                 password: ''
               }
-              //this.$router.replace('/')
               location.replace('/')
             }
           })
@@ -137,17 +136,6 @@ export default {
   font-size: 300%;
   font-weight: 500;
   text-align: center;
-}
-
-.forgot-link {
-  text-align: right;
-  padding-bottom: 4%;
-}
-
-.forgot-link .forgot-link-text {
-  color: #00a0d1;
-  text-decoration: none;
-  cursor: pointer;
 }
 
 .btn-register {

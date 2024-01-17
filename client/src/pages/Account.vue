@@ -206,19 +206,6 @@ export default {
 </template>
 
 <style scoped>
-/*.main-screen {
-  width: 100%;
-  background-color: #455a64e0;
-  border-radius: 2rem;
-  overflow: hidden;
-  padding: 2%;
-  margin-top: 25%;
-  margin-left: 50%;
-  margin-bottom: 25%;
-  position: relative;
-  justify-content: center;
-}*/
-
 .main-container {
   padding-top: 100px;
   padding-bottom: 100px;
