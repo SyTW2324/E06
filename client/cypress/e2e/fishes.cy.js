@@ -22,7 +22,7 @@ describe("Pagina de Fauna", () => {
 
   it("Debería buscar el sargo", () => {
     cy.get('input[placeholder="Buscar por nombre..."]').type("sargo");
-    cy.contains('button', 'Buscar').click();
+    cy.get('.btn.btn-secondary').click({force: true});
 
     // Deberian aparecer al menos el Sargo comun 
     cy.contains('Sargo común').should('be.visible');
