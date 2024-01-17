@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe("Pagina de Inicio de Sesión", () => {
+describe("Pagina de Registro", () => {
   beforeEach(() => {
     cy.visit("https://fishing-net.netlify.app/register");
   });
