@@ -24,7 +24,7 @@ describe("Pagina de Fauna", () => {
     cy.get('input[placeholder="Buscar por nombre..."]').type("sargo");
     cy.get('.btn.btn-secondary').click();
 
-    // Deberian aparecer al menos el Sargo comun
+    // Deberian aparecer al menos el Sargo comun 
     cy.contains('Sargo común').should('be.visible');
     cy.contains('Diplodus sargus').should('be.visible');
     cy.contains('Talla mínima: 15 cm').should('be.visible');
