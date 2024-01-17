@@ -16,8 +16,8 @@ describe("Pagina de Fauna", () => {
     cy.contains('Talla mínima: 15 cm').should('be.visible');
 
     cy.contains('Salema').should('be.visible');
-    cy.contains('Sarpa Salpa').should('be.visible');
-    cy.contains('Talla mínima: 15 cm').should('be.visible');
+    cy.contains('Sarpa salpa').should('be.visible');
+    cy.contains('Talla mínima: 30 cm').should('be.visible');
   });
 
   it("Debería buscar el sargo", () => {
