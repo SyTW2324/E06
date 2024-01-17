@@ -20,7 +20,7 @@ describe("Pagina de Fauna", () => {
     cy.contains('Talla mínima: 15 cm').should('be.visible');
   });
 
-  it("Debería buscar el sargo y no encontrar la salema", () => {
+  it("Debería buscar el sargo", () => {
     cy.get('input[placeholder="Buscar por nombre..."]').type("sargo");
     cy.get('.btn.btn-secondary').click();
 
