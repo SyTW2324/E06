@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const ENDPOINT_PATH = 'https://dark-khakis-mite.cyclic.app/fishes'
+const ENDPOINT_PATH = 'https://fishing-net.onrender.com/fishes'
 
 const fish = {
   getFishes() {
