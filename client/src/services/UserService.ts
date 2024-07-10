@@ -1,8 +1,8 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-const ENDPOINT_PATH_USER = 'https://dark-khakis-mite.cyclic.app/users'
-const ENDPOINT_PATH_LOGIN = 'https://dark-khakis-mite.cyclic.app/login'
+const ENDPOINT_PATH_USER = 'https://fishing-net.onrender.com/users'
+const ENDPOINT_PATH_LOGIN = 'https://fishing-net.onrender.com/login'
 
 interface User {
   name: string
